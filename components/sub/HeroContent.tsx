@@ -13,8 +13,8 @@ const HeroContent = () => {
   const [output, setOutput] = React.useState("");
   const [ast , setAst] = React.useState("");
   const [code, setCode] = React.useState(
-    `for(let i = 0 ; i < 10 ; i = i + 1) {
-      print(i)
+    `for(let i = 0 ; i < 100 ; i = i + 1) {
+      print("Hii")
     }`
   );
   const [viewType , setViewType] = React.useState("ast");
@@ -24,13 +24,14 @@ const HeroContent = () => {
     try {
       setLoading(true);
 
-      const res = await axios.post("http://localhost:8080/gorRunner", {
+      const res = await axios.post(process.env.NEXT_PUBLIC_RENDER_URL + "/gorRunner", {
         code: code,
       });
 
       console.log(res)
       setOutput(res.data.Output);
       setAst(res.data.AST);
+      
     } catch (error) {
       console.log(error);
     } finally {
@@ -84,15 +85,15 @@ const HeroContent = () => {
           <div className="flex flex-col gap-5">
             <div
               onClick={clickHandler}
-              className={`Welcome-box cursor-pointer select-none py-[8px] px-[13px] border border-[#7042f88b] ${loading ? 'opacity-[0.5] ' : 'opacity-[0.9] '}`}
+              className={`Welcome-box cursor-pointer select-none py-[8px] px-[13px] border border-[#7042f88b] ${loading ? 'opacity-[0.5] cursor-wait' : 'opacity-[0.9] cursor-pointer'}`}
               
             >
-              <button className="w-full flex justify-center items-center gap-2" >
+              <div className="w-full flex justify-center items-center gap-2" >
                   <SparklesIcon className="text-[#b49bff] h-5 w-10" />
                   <h1 className="Welcome-text text-[18px]">
                     Run
                   </h1>
-              </button>
+              </div>
 
             </div>
 
@@ -104,10 +105,10 @@ const HeroContent = () => {
                     setViewType('output');
                   }
               }}
-              className={`Welcome-box cursor-pointer select-none py-[8px] px-[13px] border border-[#7042f88b] ${loading ? 'opacity-[0.5] ' : 'opacity-[0.9] '}`}
+              className={`Welcome-box select-none py-[8px] px-[13px] border border-[#7042f88b] ${loading ? 'opacity-[0.5] cursor-wait' : 'opacity-[0.9] cursor-pointer'}`}
               
             >
-              <button className="w-[90px] flex justify-center items-center gap-2" 
+              <div className="w-[90px] flex justify-center items-center gap-2" 
                 onClick={ () => {
                     if(viewType === 'output') {
                       setViewType('ast');
@@ -120,7 +121,7 @@ const HeroContent = () => {
                   <h1 className="Welcome-text text-[18px]">
                     {viewType === 'output' ? 'Output' : 'AST'}
                   </h1>
-              </button>
+              </div>
 
             </div>     
 
