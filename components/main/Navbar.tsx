@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import { FaGithub } from "react-icons/fa";
+import { FaCode } from "react-icons/fa";
 import Gor from '../../app/gor.png'
 
 const Navbar = () => {
@@ -31,14 +31,14 @@ const Navbar = () => {
           <div className="flex flex-row gap-5 text-gray-300">
 
             <a className="h-auto w-auto flex flex-row items-center gap-2"
-              href="https://github.com/iwhitebird" target="_blank">
+              href="https://github.com/IWhitebird/Gor" target="_blank">
 
             <h1 className="Welcome-text text-[18px]">
 
               Source Code
             </h1>
 
-              <FaGithub />
+              <FaCode />
             </a>
 
 

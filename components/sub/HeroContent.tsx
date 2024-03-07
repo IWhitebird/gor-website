@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 import CodeEditor from "./CodeEditor";
 import { slideInFromTop } from "@/utils/motion";
 import SparklesIcon from "@heroicons/react/24/solid/SparklesIcon";
-import Loader from "./Loader";
 import axios from "axios";
 import AstEditor from "./AstEditor";
 
@@ -13,12 +12,16 @@ const HeroContent = () => {
 
   const [loading, setLoading] = React.useState(false);
   const [output, setOutput] = React.useState("");
+  const [ast , setAst] = React.useState("");
   const [code, setCode] = React.useState(
-    `print(5 + 5)`
+    `for(let i = 0 ; i < 10 ; i = i + 1) {
+      print(i)
+    }`
   );
-  const [viewType , setViewType] = React.useState("output");
+  const [viewType , setViewType] = React.useState("ast");
 
   async function clickHandler() {
+    if(loading === true) return;
     try {
       setLoading(true);
 
@@ -27,7 +30,8 @@ const HeroContent = () => {
       });
 
       console.log(res)
-      setOutput(res.data.data);
+      setOutput(res.data.Output);
+      setAst(res.data.AST);
     } catch (error) {
       console.log(error);
     } finally {
@@ -41,13 +45,13 @@ const HeroContent = () => {
     <motion.div
       initial="hidden"
       animate="visible"
-      className="flex flex-row items-center justify-center px-20 mt-40 w-full z-[20]"
+      className="flex flex-row items-center justify-center px-20 mt-40 w-full m-10 mx-auto z-[20]"
     >
       <div className="h-full w-full flex flex-row gap-5 justify-center m-auto text-start">
         
         <div className="mx-auto w-[80%] h-[400px] border border-white rounded-md">
           <CodeEditor
-            code={code}
+            code={code || ""}
             setCode={setCode}
            />
         </div>  
@@ -66,30 +70,16 @@ const HeroContent = () => {
            viewType === 'output' &&
             <div className="mx-auto w-full h-[400px] border border-white rounded-md">
               <AstEditor
-                code={output}
-                setCode={setCode}
+                code={`Abstract Syntax Tree : \n` +ast || ""}
               />
             </div>     
          }
          {
             viewType === 'ast' &&
-            <div className="bg-black w-full h-[400px] rounded-lg text-white border border-white p-3 flex">
-            
-            
-            <div className="Welcome-text text-[18px] ">
-              Output : 
-            </div>
-              {
-                loading && <Loader />
-              }
-              
-              {
-                output.length > 0 && 
-                <div>
-                  {output}
-                </div>
-              }
-      
+            <div className="mx-auto w-full h-[400px] border border-white rounded-md">
+              <AstEditor
+                code={`output : \n` + output || ""}
+              />
             </div>
          }
 
@@ -98,10 +88,11 @@ const HeroContent = () => {
           <div className="flex flex-col gap-5">
             <motion.div
               variants={slideInFromTop}
-              className={`Welcome-box py-[8px] px-[13px] border border-[#7042f88b] ${loading ? 'opacity-[0.5] ' : 'opacity-[0.9] '}`}
+              onClick={clickHandler}
+              className={`Welcome-box cursor-pointer select-none py-[8px] px-[13px] border border-[#7042f88b] ${loading ? 'opacity-[0.5] ' : 'opacity-[0.9] '}`}
               
             >
-              <button disabled={loading} className="w-full flex justify-center items-center gap-2" onClick={clickHandler}>
+              <button className="w-full flex justify-center items-center gap-2" >
                   <SparklesIcon className="text-[#b49bff] h-5 w-10" />
                   <h1 className="Welcome-text text-[18px]">
                     Run
@@ -112,16 +103,23 @@ const HeroContent = () => {
 
             <motion.div
               variants={slideInFromTop}
-              className={`Welcome-box py-[8px] px-[13px] border border-[#7042f88b] ${loading ? 'opacity-[0.5] ' : 'opacity-[0.9] '}`}
-              
-            >
-              <button disabled={loading} className="w-[90px] flex justify-center items-center gap-2" 
-              onClick={ () => {
+                onClick={ () => {
                   if(viewType === 'output') {
                     setViewType('ast');
                   } else {
                     setViewType('output');
                   }
+              }}
+              className={`Welcome-box cursor-pointer select-none py-[8px] px-[13px] border border-[#7042f88b] ${loading ? 'opacity-[0.5] ' : 'opacity-[0.9] '}`}
+              
+            >
+              <button className="w-[90px] flex justify-center items-center gap-2" 
+                onClick={ () => {
+                    if(viewType === 'output') {
+                      setViewType('ast');
+                    } else {
+                      setViewType('output');
+                    }
                 }
               }>
                   <SparklesIcon className="text-[#b49bff] h-5 w-10" />

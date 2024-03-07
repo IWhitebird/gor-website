@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Editor from 'react-simple-code-editor';
 import { highlight, languages } from 'prismjs';
 import 'prismjs/components/prism-clike';
@@ -17,7 +16,7 @@ const CodeEditor = ({code, setCode} : any) => {
             height: "100%",
             fontFamily: '"Fira code", "Fira Mono", monospace',
             fontSize: 18,
-            backgroundColor: "#06051f",
+            backdropFilter: 'blur(4px)',
             borderRadius: 6,
             color: "#fff",
             overflowY: 'auto'
