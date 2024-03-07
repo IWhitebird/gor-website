@@ -5,10 +5,7 @@ import 'prismjs/components/prism-clike';
 import 'prismjs/components/prism-javascript';
 import 'prismjs/themes/prism-funky.css'; 
 
-const CodeEditor = () => {
-    const [code, setCode] = useState(
-        `print(5 + 5)`
-      );
+const CodeEditor = ({code, setCode} : any) => {
       return (
         <Editor
           value={code}

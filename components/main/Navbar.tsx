@@ -1,27 +1,28 @@
 import Image from "next/image";
 import React from "react";
 import { FaGithub } from "react-icons/fa";
+import Gor from '../../app/gor.png'
 
 const Navbar = () => {
   return (
-    <div className="w-full top-2 fixed z-50">
-      <div className="mx-auto w-[50%] h-[52px]  shadow-md shadow-[#2A0E61]/50 bg-[#ffffff0a] rounded-full
+    <div className="w-full top-5 fixed z-50">
+      <div className="mx-auto w-[50%] h-[52px] border broder-white rounded-full
      backdrop-blur-sm  px-5">
         <div className="w-full h-full flex flex-row items-center justify-between m-auto px-[10px]">
 
           <a
             href="#about-me"
-            className="h-auto w-auto flex flex-row items-center"
+            className="h-auto gap-2 w-auto flex flex-row items-center"
           >
             <Image
-              src="/NavLogo.png"
+              src={Gor}
               alt="logo"
-              width={70}
-              height={70}
+              width={40}
+              height={40}
               className="cursor-pointer hover:animate-slowspin"
             />
 
-            <h1 className="Welcome-text text-[25px]">
+            <h1 className="Welcome-text font-bold text-[30px]">
               Gor
             </h1>
           </a>
