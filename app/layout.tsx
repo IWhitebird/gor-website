@@ -11,9 +11,6 @@ export const metadata: Metadata = {
   title: "Gor",
 };
 
-//<meta name="darkreader-lock">
-
-
 
 export default function RootLayout({
   children,
