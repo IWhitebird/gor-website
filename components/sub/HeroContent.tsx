@@ -15,7 +15,7 @@ const HeroContent = () => {
   const [code, setCode] = React.useState(
     `for(let i = 0 ; i < 100 ; i = i + 1) {
       print("Hii")
-    }`
+}`
   );
   const [viewType , setViewType] = React.useState("ast");
 

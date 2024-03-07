@@ -11,6 +11,10 @@ export const metadata: Metadata = {
   title: "Gor",
 };
 
+//<meta name="darkreader-lock">
+
+
+
 export default function RootLayout({
   children,
 }: {
@@ -18,6 +22,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <meta name="darkreader-lock"></meta>
       <body
         className={`${inter.className} bg-[#030014] overflow-y-scroll overflow-x-hidden z-[-10]`}
       >
