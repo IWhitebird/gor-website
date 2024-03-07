@@ -3,7 +3,6 @@
 import React from "react";
 import { motion } from "framer-motion";
 import CodeEditor from "./CodeEditor";
-import { slideInFromTop } from "@/utils/motion";
 import SparklesIcon from "@heroicons/react/24/solid/SparklesIcon";
 import axios from "axios";
 import AstEditor from "./AstEditor";
@@ -49,6 +48,8 @@ const HeroContent = () => {
     >
       <div className="h-full w-full flex flex-row gap-5 justify-center m-auto text-start">
         
+
+
         <div className="mx-auto w-[80%] h-[400px] border border-white rounded-md">
           <CodeEditor
             code={code || ""}
@@ -56,15 +57,12 @@ const HeroContent = () => {
            />
         </div>  
 
+
         <div className="mx-auto w-[80%] flex justify-between gap-5">
           
 
 
-          <motion.div
-            variants={slideInFromTop}
-            className="w-full"
-            onClick={() => {console.log("hi")}}
-          >
+
          
          {
            viewType === 'output' &&
@@ -83,11 +81,8 @@ const HeroContent = () => {
             </div>
          }
 
-          </motion.div>
-
           <div className="flex flex-col gap-5">
-            <motion.div
-              variants={slideInFromTop}
+            <div
               onClick={clickHandler}
               className={`Welcome-box cursor-pointer select-none py-[8px] px-[13px] border border-[#7042f88b] ${loading ? 'opacity-[0.5] ' : 'opacity-[0.9] '}`}
               
@@ -99,10 +94,9 @@ const HeroContent = () => {
                   </h1>
               </button>
 
-            </motion.div>
+            </div>
 
-            <motion.div
-              variants={slideInFromTop}
+            <div
                 onClick={ () => {
                   if(viewType === 'output') {
                     setViewType('ast');
@@ -128,7 +122,7 @@ const HeroContent = () => {
                   </h1>
               </button>
 
-            </motion.div>     
+            </div>     
 
           </div>
 
