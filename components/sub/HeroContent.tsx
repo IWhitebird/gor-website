@@ -12,11 +12,17 @@ const HeroContent = () => {
   const [loading, setLoading] = React.useState(false);
   const [output, setOutput] = React.useState("");
   const [ast , setAst] = React.useState("");
-  const [code, setCode] = React.useState(
-    `for(let i = 0 ; i < 100 ; i = i + 1) {
-      print("Hii")
-}`
-  );
+  const [code, setCode] = React.useState(`
+#If the Print Exceed stdout buffer it wont return and go in 
+#loading , also this editor javascript syntax highliting so 
+#it may look bad
+
+let a = 0
+for(let i = 0 ; i < 100 ; i = i + 1) {
+    a = a + 1
+}
+print(a)
+`);
   const [viewType , setViewType] = React.useState("ast");
 
   async function clickHandler() {
