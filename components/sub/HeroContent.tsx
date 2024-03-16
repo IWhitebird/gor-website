@@ -12,7 +12,7 @@ const HeroContent = () => {
   const [loading, setLoading] = React.useState(false);
   const [output, setOutput] = React.useState("");
   const [ast , setAst] = React.useState("");
-  const [code, setCode] = React.useState(`#If the Print Exceed stdout buffer it wont return and go in loading
+  const [code, setCode] = React.useState(`#If the Print Exceed stdout buffer it wont return
   
 let a = 0
 for(let i = 0 ; i < 100 ; i = i + 1) {
