@@ -6,20 +6,14 @@ import CodeEditor from "./CodeEditor";
 import SparklesIcon from "@heroicons/react/24/solid/SparklesIcon";
 import axios from "axios";
 import AstEditor from "./AstEditor";
+import { codeInput } from "../constants/input";
 
 const HeroContent = () => {
 
   const [loading, setLoading] = React.useState(false);
   const [output, setOutput] = React.useState("");
   const [ast , setAst] = React.useState("");
-  const [code, setCode] = React.useState(`#If the Print Exceed stdout buffer it wont return
-  
-let a = 0
-for(let i = 0 ; i < 100 ; i = i + 1) {
-    a = a + 1
-}
-print(a)
-`);
+  const [code, setCode] = React.useState(codeInput);
   const [viewType , setViewType] = React.useState("ast");
 
   async function clickHandler() {
